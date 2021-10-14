@@ -10,7 +10,7 @@
   </mat-form-field>
   <div class="theme-picker">
     <mat-icon>brightness_1</mat-icon>
-    <mat-slide-toggle class="example-margin" [checked]="true">
+    <mat-slide-toggle class="example-margin" [checked]="true" (change)="onChangeTheme()">
     </mat-slide-toggle>
     <mat-icon>brightness_2</mat-icon>
   </div>

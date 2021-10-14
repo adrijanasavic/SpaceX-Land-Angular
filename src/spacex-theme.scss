@@ -1,0 +1,35 @@
+@use "~@angular/material"as mat;
+
+@include mat.core();
+
+// LIGHT THEME
+$spacex-light-primary: mat.define-palette(mat.$indigo-palette);
+$spacex-light-accent : mat.define-palette(mat.$pink-palette);
+$spacex-light-warn   : mat.define-palette(mat.$red-palette);
+
+$spacex-light-theme: mat.define-light-theme((color: (primary: $spacex-light-primary,
+      accent: $spacex-light-accent,
+      warn: $spacex-light-warn,
+    ),
+  ));
+
+.light-theme-mode {
+  background: mat.get-color-from-palette(mat.$indigo-palette);
+  @include mat.core-theme($spacex-light-theme);
+  @include mat.all-component-colors($spacex-light-theme);
+}
+
+// DARK THEME
+$spacex-dark-primary: mat.define-palette(mat.$indigo-palette);
+$spacex-dark-accent : mat.define-palette(mat.$pink-palette);
+$spacex-dark-warn   : mat.define-palette(mat.$red-palette);
+
+$spacex-dark-theme: mat.define-dark-theme((color: (primary: $spacex-dark-primary,
+      accent: $spacex-dark-accent,
+      warn: $spacex-dark-warn,
+    ),
+  ));
+@include mat.core-theme($spacex-dark-theme);
+@include mat.all-component-themes($spacex-dark-theme);
+
+

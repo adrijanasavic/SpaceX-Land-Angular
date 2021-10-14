@@ -12,4 +12,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChangeTheme() {
+    document.body.classList.toggle('light-theme-mode');
+  }
 }
