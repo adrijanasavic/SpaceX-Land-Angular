@@ -13,7 +13,8 @@ export class LaunchesListComponent implements OnInit, OnDestroy {
   private launchesSub?: Subscription;
   public columns: number = 0;
   public allLoaded: boolean = false;
-  searchMode: boolean = true;
+  public searchMode: boolean = true;
+  public isLoading: boolean = true;
 
   constructor(
     private launchesService: LaunchesService
@@ -26,6 +27,7 @@ export class LaunchesListComponent implements OnInit, OnDestroy {
       }
       this.launchesList = data.launches;
       this.searchMode = data.searchMode;
+      this.isLoading = false;
     });
     this.launchesService.getLaunches();
     this.setGridColumns(window.innerWidth);
@@ -63,6 +65,7 @@ export class LaunchesListComponent implements OnInit, OnDestroy {
   }
 
   onLoadClicked() {
+    this.isLoading = true;
     this.launchesService.loadMoreLaunches();
   }
 

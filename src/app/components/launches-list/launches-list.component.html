@@ -20,9 +20,10 @@
     </div>
   </mat-grid-tile>
 </mat-grid-list>
-<div *ngIf="launchesList.length === 0" class="no-result-message">
+<div *ngIf="launchesList.length === 0 && !isLoading" class="no-result-message">
   <p>No results found</p>
 </div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
 <button *ngIf="!allLoaded && !searchMode" mat-raised-button color="accent" class="btn-load" (click)="onLoadClicked()">
   Load More
 </button>

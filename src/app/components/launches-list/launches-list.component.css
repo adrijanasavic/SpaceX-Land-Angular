@@ -60,3 +60,11 @@ mat-grid-tile {
 .no-result-message p {
   font-size: 200%;
 }
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+.spinner-box {
+  margin: 20px 0;
+}
