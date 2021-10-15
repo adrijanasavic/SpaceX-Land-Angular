@@ -1,0 +1,50 @@
+mat-grid-list {
+  margin-top: 20px;
+}
+
+img {
+  max-width: 50%;
+  display  : block;
+  margin   : 0 auto;
+}
+
+.card-box {
+  width          : 100%;
+  height         : 100%;
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  gap            : 20px;
+}
+
+mat-card {
+  width          : 70%;
+  height         : 70%;
+  overflow-y     : scroll;
+  scrollbar-color: #3F51B5 transparent;
+  scrollbar-width: thin;
+}
+
+mat-card::-webkit-scrollbar {
+  height    : 5px;
+  width     : 5px;
+  background: transparent;
+}
+
+mat-card::-webkit-scrollbar-thumb {
+  background: #3F51B5;
+}
+
+mat-card-content {
+  margin-top: 16px;
+}
+
+mat-grid-tile {
+  border-radius: 5px;
+}
+
+.btn-load {
+  display: block;
+  margin : 20px auto 0 auto;
+}
