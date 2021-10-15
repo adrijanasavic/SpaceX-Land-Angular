@@ -13,17 +13,19 @@ export class LaunchesListComponent implements OnInit, OnDestroy {
   private launchesSub?: Subscription;
   public columns: number = 0;
   public allLoaded: boolean = false;
+  searchMode: boolean = true;
 
   constructor(
     private launchesService: LaunchesService
   ) { }
 
   ngOnInit(): void {
-    this.launchesSub = this.launchesService.getLaunchesObservable().subscribe((data: { launches: Launch[], allLoaded: boolean }) => {
+    this.launchesSub = this.launchesService.getLaunchesObservable().subscribe((data: { launches: Launch[], allLoaded: boolean, searchMode: boolean }) => {
       if (data.allLoaded) {
         this.allLoaded = true;
       }
       this.launchesList = data.launches;
+      this.searchMode = data.searchMode;
     });
     this.launchesService.getLaunches();
     this.setGridColumns(window.innerWidth);

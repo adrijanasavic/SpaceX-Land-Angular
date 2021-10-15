@@ -6,7 +6,7 @@
   </span>
   <mat-form-field>
     <mat-label>Search Mission</mat-label>
-    <input matInput placeholder="Search Mission">
+    <input matInput placeholder="Search Mission" #searchInput (keyup)="onMissionSearch(searchInput)">
   </mat-form-field>
   <div class="theme-picker">
     <mat-icon>brightness_1</mat-icon>
