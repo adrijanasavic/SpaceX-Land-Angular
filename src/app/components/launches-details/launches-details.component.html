@@ -1,0 +1,131 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-tab-group *ngIf="!isLoading">
+  <!-- GENERAL INFO  TAB-->
+  <mat-tab label="General Info">
+    <table mat-table [dataSource]="generalInfo" class="mat-elevation-z8">
+      <ng-container matColumnDef="infoName">
+        <td mat-cell *matCellDef="let element">{{element.infoName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="infoData">
+        <td mat-cell *matCellDef="let element; index as i">
+          <span *ngIf="!i"><img [src]="element.infoData" alt="Mission Image" class="mission-image"></span>
+          <span *ngIf="i">{{element.infoData}}</span>
+        </td>
+      </ng-container>
+      <tr mat-row *matRowDef="let row; columns: infoColumns;"></tr>
+    </table>
+  </mat-tab>
+
+  <!-- ROCKET INFO TAB -->
+  <mat-tab label="Rocket Info">
+    <table mat-table [dataSource]="rocketInfo" class="mat-elevation-z8">
+      <ng-container matColumnDef="infoName">
+        <td mat-cell *matCellDef="let element">{{element.infoName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="infoData">
+        <td mat-cell *matCellDef="let element;">
+          <span
+            *ngIf="element.infoName !== 'Payloads:' && element.infoName !== 'Rocket Launch Image:'">{{element.infoData}}
+          </span>
+          <span *ngIf="element.infoName === 'Rocket Launch Image:'">
+            <span *ngIf="element.infoData[0]"><img [src]="element.infoData[0]" alt="Rocket Launch Image:"
+                class="rocket-image">
+            </span>
+            <span *ngIf="!element.infoData[0]">
+              No Image Available
+            </span>
+          </span>
+          <span *ngIf="element.infoName === 'Payloads:'">
+            <span *ngFor="let payload of element.infoData; index as j">
+              <div *ngIf="j > 0">______________________________</div> <br>
+              <div *ngIf="element.infoData.length > 1">Payload {{j+1}}:</div>
+              <div>Name: {{ payload.payload_id }}</div>
+              <div>Customers:
+                <span *ngFor="let customer of payload.customers">{{ customer + ' ' }}</span>
+              </div>
+              <div>Country: {{ payload.nationality }}</div>
+              <div>Manufacturer: {{ payload.manufacturer }}</div>
+              <div>Payload Type: {{ payload.payload_type }}</div>
+              <div>Payload Mass: {{ payload.payload_mass_kg ? payload.payload_mass_kg + ' kg' : 'No Info'}}</div>
+              <div>Payload Orbit: {{ payload.orbit_params.regime }}</div>
+              <div *ngIf="payload.orbit_params.periapsis_km">
+                Orbit Periapsis: {{ payload.orbit_params.periapsis_km + 'km'}}
+              </div>
+              <div *ngIf="payload.orbit_params.apoapsis_km">
+                Orbit Apoapsis: {{ payload.orbit_params.apoapsis_km + 'km'}}
+              </div>
+            </span>
+          </span>
+        </td>
+      </ng-container>
+      <tr mat-row *matRowDef="let row; columns: infoColumns;"></tr>
+    </table>
+  </mat-tab>
+
+  <!-- MEDIA TAB -->
+  <mat-tab label="Media">
+    <!-- MEDIA --- LINKS -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Links
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="links">
+        <a *ngIf="this.launchDetails!.links.redditCampaing" mat-raised-button color="primary" target="_blank"
+          [href]="this.launchDetails!.links.redditCampaing"><i class="fab fa-reddit-square"></i> 1 Reddit Campaign</a>
+        <a *ngIf="this.launchDetails!.links.redditLaunch" mat-raised-button color="primary" target="_blank"
+          [href]="this.launchDetails!.links.redditLaunch"><i class="fab fa-reddit-square"></i> 2 Reddit Launch</a>
+        <a *ngIf="this.launchDetails!.links.redditRecovery" mat-raised-button color="primary" target="_blank"
+          [href]="this.launchDetails!.links.redditRecovery"><i class="fab fa-reddit-square"></i> 3 Reddit Recovery</a>
+        <a *ngIf="this.launchDetails!.links.redditMedia" mat-raised-button color="primary" target="_blank"
+          [href]="this.launchDetails!.links.redditMedia"><i class="fab fa-reddit-square"></i> 4 Reddit Media</a>
+        <a *ngIf="this.launchDetails!.links.article && this.launchDetails!.links.wikipedia !== this.launchDetails!.links.article"
+          mat-raised-button color="primary" target="_blank" [href]="this.launchDetails!.links.article"><i
+            class="fas fa-newspaper"></i> 5 Article</a>
+        <a *ngIf="this.launchDetails!.links.wikipedia" mat-raised-button color="primary" target="_blank"
+          [href]="this.launchDetails!.links.wikipedia"><i class="fab fa-wikipedia-w"></i> 6 Wikipedia</a>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- IMAGES -->
+    <mat-accordion *ngIf="this.launchDetails!.links.flickr.length">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Images
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list [cols]="gridColumns" gutterSize="20px" (window:resize)="onResize($event.target)">
+          <mat-grid-tile *ngFor="let imageUrl of this.launchDetails!.links.flickr">
+            <div class="image-box">
+              <img [src]="imageUrl" alt="Rocket Image" class="launch-image" #rocketImage
+                (click)="onImageClick(rocketImage)">
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- VIDEO -->
+    <mat-accordion *ngIf="this.launchDetails!.links.video">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Video
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="video-box">
+          <iframe width="100%" height="515" style="border-radius: 5px;" [src]="this.videoUrl"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+</mat-tab-group>

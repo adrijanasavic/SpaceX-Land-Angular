@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LaunchesListComponent } from './components/launches-list/launches-list.component';
+import { LaunchesDetailsComponent } from './components/launches-details/launches-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LaunchesListComponent
+    LaunchesListComponent,
+    LaunchesDetailsComponent
   ],
   imports: [
     BrowserModule,
