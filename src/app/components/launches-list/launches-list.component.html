@@ -24,6 +24,6 @@
   <p>No results found</p>
 </div>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<button *ngIf="!allLoaded && !searchMode" mat-raised-button color="accent" class="btn-load" (click)="onLoadClicked()">
+<button *ngIf="!allLoaded && !searchMode && !isLoading" mat-raised-button color="accent" class="btn-load" (click)="onLoadClicked()">
   Load More
 </button>

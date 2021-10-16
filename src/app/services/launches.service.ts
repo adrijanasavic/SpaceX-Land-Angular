@@ -131,4 +131,8 @@ export class LaunchesService {
         })
         );
   }
+
+   getShowInputObservable() {
+    return this.showSearchInput.asObservable();
+  }
 }

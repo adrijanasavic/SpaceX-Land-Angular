@@ -4,7 +4,7 @@
       <img src="../../assets/SpaceX-Logo.svg" alt="" />
     </a>
   </span>
-  <mat-form-field>
+  <mat-form-field *ngIf="showSearch">
     <mat-label>Search Mission</mat-label>
     <input matInput placeholder="Search Mission" #searchInput (keyup)="onMissionSearch(searchInput)">
   </mat-form-field>

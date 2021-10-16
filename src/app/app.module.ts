@@ -9,13 +9,15 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LaunchesListComponent } from './components/launches-list/launches-list.component';
 import { LaunchesDetailsComponent } from './components/launches-details/launches-details.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LaunchesListComponent,
-    LaunchesDetailsComponent
+    LaunchesDetailsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
