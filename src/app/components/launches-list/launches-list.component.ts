@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LaunchesService } from '../../services/launches.service';
 import { Subscription } from 'rxjs';
 import { Launch } from '../../models/launch.model';
+import * as AOS from 'aos';
+
 
 @Component({
   selector: 'app-launches-list',
@@ -21,6 +23,10 @@ export class LaunchesListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    AOS.init({
+      duration: 1200,
+    })
+
     this.launchesSub = this.launchesService.getLaunchesObservable().subscribe((data: { launches: Launch[], allLoaded: boolean, searchMode: boolean }) => {
       if (data.allLoaded) {
         this.allLoaded = true;

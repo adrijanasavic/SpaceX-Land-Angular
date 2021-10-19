@@ -1,12 +1,12 @@
 <mat-grid-list [cols]="columns" gutterSize="20px" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let launch of launchesList">
+  <mat-grid-tile *ngFor="let launch of launchesList" data-aos="flip-left">
     <div class="card-box">
       <mat-card>
         <mat-card-header>
           <mat-card-title>Name: {{launch.missionName}}</mat-card-title>
           <mat-card-subtitle>Launch Data: {{launch.launchDate}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="launch.missionImagePath" alt="Mission Image">
+        <img mat-card-image [src]="launch.missionImagePath"  alt="Mission Image">
         <mat-card-content>
           <p>
             Launch details: {{launch.launchDetails}}
@@ -16,7 +16,7 @@
         <mat-card-actions>
         </mat-card-actions>
       </mat-card>
-      <a mat-raised-button color="primary" [routerLink]="['launch/details', launch.id]">Read more</a>
+      <a mat-raised-button color="primary"  [routerLink]="['launch/details', launch.id] ">Read more</a>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

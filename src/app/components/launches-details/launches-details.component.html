@@ -2,7 +2,7 @@
 <mat-tab-group *ngIf="!isLoading">
   <!-- GENERAL INFO  TAB-->
   <mat-tab label="General Info">
-    <table mat-table [dataSource]="generalInfo" class="mat-elevation-z8">
+    <table mat-table data-aos="fade-up" [dataSource]="generalInfo" class="mat-elevation-z8">
       <ng-container matColumnDef="infoName">
         <td mat-cell *matCellDef="let element">{{element.infoName}}</td>
       </ng-container>

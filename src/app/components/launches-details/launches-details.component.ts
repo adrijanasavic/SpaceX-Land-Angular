@@ -3,6 +3,7 @@ import { LaunchesService } from '../../services/launches.service';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchDetail } from '../../models/launch-detail.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-launches-details',
@@ -26,6 +27,10 @@ export class LaunchesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    AOS.init({
+      duration: 1200,
+    })
+    
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
